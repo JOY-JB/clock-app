@@ -5,6 +5,7 @@ import {
 } from "@expo-google-fonts/inter";
 import { Feather, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import {
   ActivityIndicator,
   ImageBackground,
@@ -50,6 +51,8 @@ const RowView = ({ label, value }) => {
 };
 
 export default function App() {
+  const [showMore, setShowMore] = useState(false);
+
   let [fontsLoaded] = useFonts({
     "Inter-Regular": Inter_400Regular,
     "Inter-Bold": Inter_700Bold,
@@ -66,17 +69,19 @@ export default function App() {
     >
       <SafeAreaView style={styles.root}>
         {/* upper portion         */}
-        <View style={{ flexDirection: "row", gap: 10 }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.quote}>
-              "The advance of technology is based on making it fit in so that
-              you don't really even notice it, so it's part of everyday life."
-            </Text>
-            <Text style={styles.author}> - Bill Gates</Text>
-          </View>
+        {!showMore && (
+          <View style={{ flexDirection: "row", gap: 10 }}>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.quote}>
+                "The advance of technology is based on making it fit in so that
+                you don't really even notice it, so it's part of everyday life."
+              </Text>
+              <Text style={styles.author}> - Bill Gates</Text>
+            </View>
 
-          <FontAwesome name="refresh" size={24} color="#f9f9f9" />
-        </View>
+            <FontAwesome name="refresh" size={24} color="#f9f9f9" />
+          </View>
+        )}
 
         <View style={{ marginBottom: 15 }}>
           <View>
@@ -125,6 +130,7 @@ export default function App() {
               IN LONDON, UK
             </Text>
           </View>
+
           <TouchableOpacity
             style={{
               flexDirection: "row",
@@ -136,8 +142,9 @@ export default function App() {
               paddingLeft: 10,
               paddingRight: 5,
               justifyContent: "space-between",
-              marginTop: 50,
+              marginTop: 60,
             }}
+            onPress={() => setShowMore((prev) => !prev)}
           >
             <Text
               style={{
@@ -147,10 +154,10 @@ export default function App() {
                 letterSpacing: 3,
               }}
             >
-              More
+              {showMore ? "LESS" : "MORE"}
             </Text>
             <MaterialIcons
-              name="keyboard-arrow-down"
+              name={showMore ? "keyboard-arrow-up" : "keyboard-arrow-down"}
               size={30}
               style={{
                 backgroundColor: "#262322",
@@ -161,20 +168,23 @@ export default function App() {
           </TouchableOpacity>
         </View>
       </SafeAreaView>
+
       {/* lower portion */}
-      <View
-        style={{
-          backgroundColor: "#f9f9f9",
-          opacity: 0.8,
-          paddingVertical: 48,
-          paddingHorizontal: 26,
-        }}
-      >
-        <RowView label="Current Timezone" value="Europe/London" />
-        <RowView label="Day of the year" value="295" />
-        <RowView label="Day of the Week" value="5" />
-        <RowView label="Week Number" value="42" />
-      </View>
+      {showMore && (
+        <View
+          style={{
+            backgroundColor: "#f9f9f9",
+            opacity: 0.8,
+            paddingVertical: 48,
+            paddingHorizontal: 26,
+          }}
+        >
+          <RowView label="Current Timezone" value="Europe/London" />
+          <RowView label="Day of the year" value="295" />
+          <RowView label="Day of the Week" value="5" />
+          <RowView label="Week Number" value="42" />
+        </View>
+      )}
 
       <StatusBar style="light" />
     </ImageBackground>
