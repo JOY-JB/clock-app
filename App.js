@@ -3,17 +3,44 @@ import {
   Inter_700Bold,
   useFonts,
 } from "@expo-google-fonts/inter";
-import { FontAwesome } from "@expo/vector-icons";
+import { Feather, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import {
   ActivityIndicator,
   ImageBackground,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
-
 import { SafeAreaView } from "react-native-safe-area-context";
+
+const RowView = ({ label, value }) => {
+  return (
+    <View style={{ flexDirection: "row" }}>
+      <Text
+        style={{
+          fontFamily: "Inter-Regular",
+          fontSize: 18,
+          color: "#262322",
+          letterSpacing: 3,
+        }}
+      >
+        {label}
+      </Text>
+      <Text
+        style={{
+          fontFamily: "Inter-Bold",
+          fontSize: 18,
+          color: "#262322",
+          letterSpacing: 3,
+        }}
+      >
+        {value}
+      </Text>
+    </View>
+  );
+};
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -31,6 +58,7 @@ export default function App() {
       style={styles.container}
     >
       <SafeAreaView style={styles.root}>
+        {/* upper portion         */}
         <View style={{ flexDirection: "row", gap: 10 }}>
           <View style={{ flex: 1 }}>
             <Text style={styles.quote}>
@@ -42,7 +70,101 @@ export default function App() {
 
           <FontAwesome name="refresh" size={24} color="#f9f9f9" />
         </View>
+
+        <View style={{ marginBottom: 15 }}>
+          <View>
+            <View style={{ flexDirection: "row" }}>
+              <Feather name="sun" size={25} color="#f9f9f9" />
+              <Text
+                style={{
+                  fontFamily: "Inter-Regular",
+                  fontSize: 20,
+                  color: "#f9f9f9",
+                  marginLeft: 8,
+                  letterSpacing: 3,
+                }}
+              >
+                Good Morning
+              </Text>
+            </View>
+            <Text>
+              <Text
+                style={{
+                  fontFamily: "Inter-Bold",
+                  fontSize: 95,
+                  color: "#f9f9f9",
+                }}
+              >
+                11:30
+              </Text>
+              <Text
+                style={{
+                  fontFamily: "Inter-Regular",
+                  fontSize: 18,
+                  color: "#f9f9f9",
+                }}
+              >
+                BST
+              </Text>
+            </Text>
+            <Text
+              style={{
+                fontFamily: "Inter-Bold",
+                fontSize: 18,
+                color: "#f9f9f9",
+                letterSpacing: 3,
+              }}
+            >
+              IN LONDON, UK
+            </Text>
+          </View>
+          <TouchableOpacity
+            style={{
+              flexDirection: "row",
+              width: 113,
+              height: 40,
+              backgroundColor: "#f9f9f9",
+              alignItems: "center",
+              borderRadius: 30,
+              paddingLeft: 10,
+              paddingRight: 5,
+              justifyContent: "space-between",
+              marginTop: 50,
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: "Inter-Bold",
+                fontSize: 18,
+                color: "#262322",
+                letterSpacing: 3,
+              }}
+            >
+              More
+            </Text>
+            <MaterialIcons
+              name="keyboard-arrow-down"
+              size={30}
+              style={{
+                backgroundColor: "#262322",
+                borderRadius: 50,
+                color: "white",
+              }}
+            />
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
+      {/* lower portion */}
+      <View
+        style={{
+          backgroundColor: "#f9f9f9",
+          opacity: 0.8,
+          paddingVertical: 48,
+          paddingHorizontal: 26,
+        }}
+      >
+        <RowView label="SUNRISE" value="5:30 AM" />
+      </View>
 
       <StatusBar style="light" />
     </ImageBackground>
