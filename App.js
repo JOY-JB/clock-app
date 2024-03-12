@@ -17,13 +17,21 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const RowView = ({ label, value }) => {
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 12,
+      }}
+    >
       <Text
         style={{
           fontFamily: "Inter-Regular",
-          fontSize: 18,
+          fontSize: 12,
           color: "#262322",
-          letterSpacing: 3,
+          letterSpacing: 2,
+          textTransform: "uppercase",
         }}
       >
         {label}
@@ -31,9 +39,8 @@ const RowView = ({ label, value }) => {
       <Text
         style={{
           fontFamily: "Inter-Bold",
-          fontSize: 18,
+          fontSize: 20,
           color: "#262322",
-          letterSpacing: 3,
         }}
       >
         {value}
@@ -163,7 +170,10 @@ export default function App() {
           paddingHorizontal: 26,
         }}
       >
-        <RowView label="SUNRISE" value="5:30 AM" />
+        <RowView label="Current Timezone" value="Europe/London" />
+        <RowView label="Day of the year" value="295" />
+        <RowView label="Day of the Week" value="5" />
+        <RowView label="Week Number" value="42" />
       </View>
 
       <StatusBar style="light" />
