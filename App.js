@@ -199,16 +199,6 @@ export default function App() {
               }}
               onPress={() => setDarkMode((prev) => !prev)}
             >
-              {/* <Text
-                style={{
-                  fontFamily: "Inter-Bold",
-                  fontSize: 18,
-                  color: "#262322",
-                  letterSpacing: 3,
-                }}
-              >
-                {darkMode ? "Light" : "Dark"} Mode
-              </Text> */}
               <MaterialIcons
                 name={darkMode ? "light-mode" : "dark-mode"}
                 size={30}
