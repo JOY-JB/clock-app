@@ -64,13 +64,15 @@ export default function App() {
 
   return (
     <ImageBackground
-      source={require("./assets/bg.jpg")}
+      source={require("./assets/day-bg.png")}
       style={styles.container}
     >
+      <View style={styles.overlay} />
+
       <SafeAreaView style={styles.root}>
         {/* upper portion         */}
         {!showMore && (
-          <View style={{ flexDirection: "row", gap: 10 }}>
+          <View style={{ flexDirection: "row", gap: 14 }}>
             <View style={{ flex: 1 }}>
               <Text style={styles.quote}>
                 "The advance of technology is based on making it fit in so that
@@ -83,7 +85,14 @@ export default function App() {
           </View>
         )}
 
-        <View style={{ marginBottom: 15 }}>
+        <View
+          style={{
+            marginBottom: 15,
+            flex: 1,
+            justifyContent: showMore ? "space-between" : "flex-end",
+            marginBottom: 40,
+          }}
+        >
           <View>
             <View style={{ flexDirection: "row" }}>
               <Feather name="sun" size={25} color="#f9f9f9" />
@@ -211,5 +220,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#f9f9f9",
     marginTop: 8,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
   },
 });
